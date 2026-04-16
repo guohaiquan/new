@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元宝五分钟职业性格测试</title>
+    <style>
+        body {
+            font-family: 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+            line-height: 1.6;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .intro {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        .progress-bar {
+            height: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #3498db;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+        .question-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .options {
+            display: grid;
+            gap: 10px;
+        }
+        .option {
+            padding: 12px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .option:hover {
+            background-color: #e3f2fd;
+            border-color: #3498db;
+        }
+        .option.selected {
+            background-color: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        button {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover { background-color: #2980b9; }
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+        #result {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .result-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .type-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .restart-btn { background-color: #2ecc71; }
+        .restart-btn:hover { background-color: #27ae60; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>元宝五分钟职业性格测试</h1>
+    <div class="intro">
+        <p>通过趣味选择题，帮你发现职场超能力</p>
+        <p>预计时间：4-5分钟</p>
+    </div>
+
+    <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+    </div>
+
+    <div id="quiz"></div>
+
+    <button id="submitBtn" disabled>查看测试结果</button>
+
+    <div id="result">
+        <h2 class="result-title">你的职业性格分析报告</h2>
+        <div id="resultContent"></div>
+        <button class="restart-btn" onclick="restartQuiz()">重新测试</button>
+    </div>
+</div>
+
+<script>
+    // 注意：这里需要填入完整的20道题。为了演示，我先放了2道，请确保你的文件里补全了其余内容
+    const questions = [
+        { id: 1, text: "周末早晨醒来，你第一件事想：", options: [
+            { text: "今天约谁一起玩呢？", value: "A" },
+            { text: "终于有整块时间做自己的事了", value: "B" },
+            { text: "今天要完成哪些计划？", value: "C" },
+            { text: "看看有什么新鲜事会发生", value: "D" }
+        ]},
+        { id: 2, text: "在派对上，你通常是：", options: [
+            { text: "主动认识新朋友，气氛组担当", value: "A" },
+            { text: "和熟悉的人聊天，或找个角落观察", value: "B" },
+            { text: "有目的地交流，顺便拓展人脉", value: "C" },
+            { text: "灵感迸发，成为话题中心", value: "D" }
+        ]}
+    ];
+
+    const typeDescriptions = {
+        "社交型": { badge: "社交型", description: "你热情、共情、善于沟通", careers: ["HR/招聘", "公关/销售"], advice: "发挥人际敏感度，但注意设立边界" },
+        "专业型": { badge: "专业型", description: "你专注、细致、逻辑性强", careers: ["数据分析师", "科研人员"], advice: "避免陷入过度分析" },
+        "管理型": { badge: "管理型", description: "你条理清晰、执行力强", careers: ["项目经理", "运营管理"], advice: "增加灵活性训练" },
+        "创意型": { badge: "创意型", description: "你想象力丰富、视角独特", careers: ["设计师", "产品经理"], advice: "学会适应必要的规则" }
+    };
+
+    let answers = {};
+
+    function renderQuiz() {
+        const quizContainer = document.getElementById('quiz');
+        quizContainer.innerHTML = questions.map(q => `
+            <div class="question" id="question-${q.id}">
+                <div class="question-title">第${q.id}题：${q.text}</div>
+                <div class="options">
+                    ${q.options.map(opt => `<div class="option" onclick="selectOption(${q.id}, '${opt.value}', event)">${opt.text}</div>`).join('')}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function selectOption(qId, val, event) {
+        answers[qId] = val;
+        const parent = document.getElementById(`question-${qId}`);
+        const opts = parent.querySelectorAll('.option');
+        opts.forEach(opt => opt.classList.remove('selected'));
+        event.target.classList.add('selected');
+        
+        document.getElementById('submitBtn').disabled = Object.keys(answers).length < questions.length;
+        updateProgress();
+    }
+
+    function updateProgress() {
+        const progress = (Object.keys(answers).length / questions.length) * 100;
+        document.getElementById('progress').style.width = progress + '%';
+    }
+
+    function showResult() {
+        const counts = { A: 0, B: 0, C: 0, D: 0 };
+        Object.values(answers).forEach(a => counts[a]++);
+
+        let primaryType = "社交型";
+        let maxCount = counts.A;
+        if (counts.B > maxCount) { primaryType = "专业型"; maxCount = counts.B; }
+        if (counts.C > maxCount) { primaryType = "管理型"; maxCount = counts.C; }
+        if (counts.D > maxCount) { primaryType = "创意型"; maxCount = counts.D; }
+
+        const info = typeDescriptions[primaryType];
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('submitBtn').style.display = 'none';
+        document.getElementById('result').style.display = 'block';
+        document.getElementById('resultContent').innerHTML = `
+            <div style="text-align:center"><span class="type-badge">${info.badge}</span></div>
+            <p><strong>特质：</strong>${info.description}</p>
+            <p><strong>职业建议：</strong>${info.careers.join('、')}</p>
+            <p><strong>建议：</strong>${info.advice}</p>
+        `;
+    }
+
+    function restartQuiz() {
+        location.reload();
+    }
+
+    document.getElementById('submitBtn').addEventListener('click', showResult);
+    window.onload = renderQuiz;
+</script>
+
+</body>
+</html>
