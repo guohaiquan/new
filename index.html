@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>元宝五分钟职业性格测试</title>
+    <title>新东方五分钟职业性格测试</title>
     <style>
         body {
             font-family: 'PingFang SC', 'Noto Sans CJK SC', sans-serif;
@@ -121,9 +121,9 @@
 <body>
 
 <div class="container">
-    <h1>元宝五分钟职业性格测试</h1>
+    <h1>新东方五分钟职业性格测试</h1>
     <div class="intro">
-        <p>通过趣味选择题，帮你发现职场超能力</p>
+        <p>通过20道选择题，多维度发现你的职场潜力</p>
         <p>预计时间：4-5分钟</p>
     </div>
 
@@ -143,7 +143,6 @@
 </div>
 
 <script>
-    // 注意：这里需要填入完整的20道题。为了演示，我先放了2道，请确保你的文件里补全了其余内容
     const questions = [
         { id: 1, text: "周末早晨醒来，你第一件事想：", options: [
             { text: "今天约谁一起玩呢？", value: "A" },
@@ -156,14 +155,122 @@
             { text: "和熟悉的人聊天，或找个角落观察", value: "B" },
             { text: "有目的地交流，顺便拓展人脉", value: "C" },
             { text: "灵感迸发，成为话题中心", value: "D" }
+        ]},
+        { id: 3, text: "面对突如其来的加班任务，你的第一反应是：", options: [
+            { text: "看大家是否都留下来，以此决定心态", value: "A" },
+            { text: "默默拆解任务，寻找最有效的处理路径", value: "B" },
+            { text: "快速分配各环节优先级，确保按时交付", value: "C" },
+            { text: "思考有没有更具巧思的方案能缩短工时", value: "D" }
+        ]},
+        { id: 4, text: "在团队合作中，你最不能忍受的是：", options: [
+            { text: "沟通氛围冷冰冰，大家只谈公事", value: "A" },
+            { text: "讨论没有逻辑，结论经不起推敲", value: "B" },
+            { text: "执行进度拖沓，计划反复被打乱", value: "C" },
+            { text: "方案千篇一律，缺乏创新亮点", value: "D" }
+        ]},
+        { id: 5, text: "你倾向于如何装扮自己的办公桌？", options: [
+            { text: "放满合照或朋友送的小物件，很温馨", value: "A" },
+            { text: "极其简洁，只保留必要的工具和资料", value: "B" },
+            { text: "贴满待办清单和各种进度图表", value: "C" },
+            { text: "摆放独特的摆件或富有设计感的单品", value: "D" }
+        ]},
+        { id: 6, text: "当朋友遇到困难找你倾诉时，你通常会：", options: [
+            { text: "先给予情感慰藉，陪他一起吐吐槽", value: "A" },
+            { text: "冷静分析问题的核心原因", value: "B" },
+            { text: "帮他制定下一步的行动计划", value: "C" },
+            { text: "启发他用全新的视角来看待现状", value: "D" }
+        ]},
+        { id: 7, text: "在选择阅读书籍时，你更偏向：", options: [
+            { text: "热门传记或关于人际关系的畅销书", value: "A" },
+            { text: "硬核科普、深度学术或工具类书籍", value: "B" },
+            { text: "时间管理或高效执行类的方法论", value: "C" },
+            { text: "科幻、艺术或富有想象力的文学作品", value: "D" }
+        ]},
+        { id: 8, text: "你对成功的定义更倾向于：", options: [
+            { text: "获得团队的认可并拥有广泛的人脉", value: "A" },
+            { text: "在某个领域达到极高的专业造诣", value: "B" },
+            { text: "能够掌控局面并实现预定的目标", value: "C" },
+            { text: "打破常规，留下独特的个人印记", value: "D" }
+        ]},
+        { id: 9, text: "如果必须独自去异地出差，你的感受是：", options: [
+            { text: "有点寂寞，会找当地老同学聚聚", value: "A" },
+            { text: "正好可以安静思考和梳理工作", value: "B" },
+            { text: "会严格按出差计划表安排每一分钟", value: "C" },
+            { text: "希望能顺便探索一下当地有趣的街区", value: "D" }
+        ]},
+        { id: 10, text: "在会议中，你通常扮演什么角色？", options: [
+            { text: "缓和气氛，协调大家的不同意见", value: "A" },
+            { text: "指出现存方案中逻辑不通的地方", value: "B" },
+            { text: "把控时间进度，推动结论达成", value: "C" },
+            { text: "提出令人耳目一新的非传统方案", value: "D" }
+        ]},
+        { id: 11, text: "面对批评，你的第一反应通常是：", options: [
+            { text: "担心是否影响了自己在对方心中的形象", value: "A" },
+            { text: "反复思考批评的内容是否具备事实依据", value: "B" },
+            { text: "迅速制定整改措施，以此回应批评", value: "C" },
+            { text: "思考能否从这个批评中悟出新点子", value: "D" }
+        ]},
+        { id: 12, text: "你理想的办公环境是：", options: [
+            { text: "开放式办公，方便随时沟通交流", value: "A" },
+            { text: "拥有独立专注空间，不被打扰", value: "B" },
+            { text: "功能分区明确，一切井然有序", value: "C" },
+            { text: "装修别致，充满灵感和色彩感", value: "D" }
+        ]},
+        { id: 13, text: "在处理繁杂信息时，你的习惯是：", options: [
+            { text: "跟同事聊聊，听听大家的看法再理头绪", value: "A" },
+            { text: "建立数据模型或逻辑框架进行归纳", value: "B" },
+            { text: "按照轻重缓急制作分类汇总表", value: "C" },
+            { text: "寻找不同信息点之间隐秘的关联性", value: "D" }
+        ]},
+        { id: 14, text: "如果让你组织一次团建，你会选：", options: [
+            { text: "大家都能参与的聚餐或KTV活动", value: "A" },
+            { text: "烧脑的剧本杀或极具技巧挑战的比赛", value: "B" },
+            { text: "目标感极强的户外拓展或定向越野", value: "C" },
+            { text: "参观创意展、工坊体验或沉浸式话剧", value: "D" }
+        ]},
+        { id: 15, text: "你最喜欢的学习方式是：", options: [
+            { text: "加入社群，在互动讨论中互相进步", value: "A" },
+            { text: "钻研原著和底层逻辑，自学成才", value: "B" },
+            { text: "参加高强度的速成班，以产出为导向", value: "C" },
+            { text: "在不同的跨界案例中寻找启发", value: "D" }
+        ]},
+        { id: 16, text: "当项目出现失误时，你首先会：", options: [
+            { text: "安慰受挫的伙伴，稳定大家的情绪", value: "A" },
+            { text: "复盘每一个数据和步骤，找出漏洞点", value: "B" },
+            { text: "立刻止损，并调整后续的风险预案", value: "C" },
+            { text: "寻找“变废为宝”的转机和新出路", value: "D" }
+        ]},
+        { id: 17, text: "对于职场社交，你的态度是：", options: [
+            { text: "很享受，这是工作中非常重要的一部分", value: "A" },
+            { text: "非必要不参加，觉得消耗能量", value: "B" },
+            { text: "有策略地参加，作为资源储备的途径", value: "C" },
+            { text: "喜欢有趣的灵魂，讨厌刻板的客套", value: "D" }
+        ]},
+        { id: 18, text: "在制定个人规划时，你通常：", options: [
+            { text: "会参考大多数人的建议和行业主流看法", value: "A" },
+            { text: "根据自己的优劣势进行深度的自我剖析", value: "B" },
+            { text: "设定明确的KPI和分阶段的执行步骤", value: "C" },
+            { text: "留白很多，随灵感和机遇灵活变动", value: "D" }
+        ]},
+        { id: 19, text: "你最自豪的时刻通常是因为：", options: [
+            { text: "帮助他人解决了难题并收获了感谢", value: "A" },
+            { text: "攻克了一个极具深度的专业技术难题", value: "B" },
+            { text: "成功带领团队完成了一项艰巨的任务", value: "C" },
+            { text: "做出了一个别人从未想到的原创作品", value: "D" }
+        ]},
+        { id: 20, text: "如果你现在可以随意转行，你会考虑：", options: [
+            { text: "心理咨询或慈善行业，能链接他人", value: "A" },
+            { text: "精算、科研或编程，沉浸在逻辑中", value: "B" },
+            { text: "企业运营或高管，享受运筹帷幄", value: "C" },
+            { text: "艺术创作或自由职业，追求个性化表达", value: "D" }
         ]}
     ];
 
     const typeDescriptions = {
-        "社交型": { badge: "社交型", description: "你热情、共情、善于沟通", careers: ["HR/招聘", "公关/销售"], advice: "发挥人际敏感度，但注意设立边界" },
-        "专业型": { badge: "专业型", description: "你专注、细致、逻辑性强", careers: ["数据分析师", "科研人员"], advice: "避免陷入过度分析" },
-        "管理型": { badge: "管理型", description: "你条理清晰、执行力强", careers: ["项目经理", "运营管理"], advice: "增加灵活性训练" },
-        "创意型": { badge: "创意型", description: "你想象力丰富、视角独特", careers: ["设计师", "产品经理"], advice: "学会适应必要的规则" }
+        "社交型": { badge: "社交型", description: "你热情、共情、善于沟通，是团队的润滑剂。", careers: ["HR/招聘", "公关/销售", "客户经理"], advice: "发挥人际敏感度，但注意设立情绪边界。" },
+        "专业型": { badge: "专业型", description: "你专注、细致、逻辑性强，追求深度的真相。", careers: ["数据分析师", "科研人员", "后端开发"], advice: "避免陷入过度分析，学会关注人的因素。" },
+        "管理型": { badge: "管理型", description: "你条理清晰、执行力强，天生的掌控者。", careers: ["项目经理", "运营管理", "企业中高层"], advice: "增加灵活性训练，接纳过程中的不确定性。" },
+        "创意型": { badge: "创意型", description: "你想象力丰富、视角独特，不走寻常路。", careers: ["设计师", "产品经理", "内容创作者"], advice: "在发挥创意的同时，学会适应必要的职场规则。" }
     };
 
     let answers = {};
@@ -183,8 +290,7 @@
     function selectOption(qId, val, event) {
         answers[qId] = val;
         const parent = document.getElementById(`question-${qId}`);
-        const opts = parent.querySelectorAll('.option');
-        opts.forEach(opt => opt.classList.remove('selected'));
+        parent.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
         event.target.classList.add('selected');
         
         document.getElementById('submitBtn').disabled = Object.keys(answers).length < questions.length;
@@ -212,9 +318,11 @@
         document.getElementById('result').style.display = 'block';
         document.getElementById('resultContent').innerHTML = `
             <div style="text-align:center"><span class="type-badge">${info.badge}</span></div>
-            <p><strong>特质：</strong>${info.description}</p>
-            <p><strong>职业建议：</strong>${info.careers.join('、')}</p>
-            <p><strong>建议：</strong>${info.advice}</p>
+            <p><strong>你的特质：</strong>${info.description}</p>
+            <p><strong>推荐职业：</strong>${info.careers.join('、')}</p>
+            <p><strong>成长建议：</strong>${info.advice}</p>
+            <hr>
+            <p style="font-size: 0.9em; color: #666;">选项分布统计：A-${counts.A} | B-${counts.B} | C-${counts.C} | D-${counts.D}</p>
         `;
     }
 
